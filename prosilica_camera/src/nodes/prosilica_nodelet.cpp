@@ -48,6 +48,7 @@
 #include <sensor_msgs/fill_image.h>
 #include <sensor_msgs/SetCameraInfo.h>
 
+#include <boost/format.hpp>
 #include <boost/thread.hpp>
 
 #include <prosilica_camera/ProsilicaCameraConfig.h>
@@ -307,7 +308,7 @@ private:
 
             }
             updater.update();
-            boost::this_thread::sleep(boost::posix_time::seconds(open_camera_retry_period_));
+            boost::this_thread::sleep_for(boost::chrono::duration<double>(open_camera_retry_period_));
         }
         loadIntrinsics();
         start();
